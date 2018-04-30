@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat Room</title>
+  <style type="text/css">
+    body {
+      padding: 0 20% 0 20%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 style="text-align:center;">Chat Room</h1>
+  <hr>
+  <div id="recv"></div>
+  <div style="text-align:right">
+    <div>You are <span style="color:red;" id="userName"></span></div>
+    <button onclick="NotificationHandler.requestPermission()">消息推送</button>
+    <input type="text" id="sendText">
+    <button type="button" id="sendBtn">发送</button>
+  </div>
+  <p>&nbsp;&nbsp;</p>
+  <p id="bottom">&nbsp;&nbsp;</p>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/message.js"></script>
+  <script type="text/javascript" src="./js/display.js"></script>
+  <script type="text/javascript" src="./js/connection.js"></script>
+  <script type="text/javascript">
+    NotificationHandler.requestPermission();
+    var chatCookie = getCookie("chatRoomID");
+    var t = chatCookie.split("#");
+    $("#userName").text(t[1]);
+  </script>
+</body>
+
+</html>
