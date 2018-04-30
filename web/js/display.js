@@ -1,21 +1,51 @@
 //显示消息
+//function showMessgae(data) {
+
+//  var div = $("<div><div>");
+//  var str = "";
+//  if (data.msgType == "message") {
+//    str = data.msgUser + "\t\t\t\t" + data.msgTime + "<br>" + data.msgContent;
+//  } else {
+//    str = "" + data.msgTime + "\t\t\t\t" + data.msgUser + " " + data.msgContent;
+//    if (data.msgType == "info") {
+//     div.css("color", "blue");
+//    } else {
+//      div.css("color", "red");
+//    }
+//  }
+//  div.html(str);
+//  $("#recv").append(div);
+//  $("#recv").append($("<hr>"));
+//  messageHints(data.msgContent);
+//}
+
+//解决 输出未转义造成的 xss 
 function showMessgae(data) {
 
   var div = $("<div><div>");
-  var str = "";
+  var span1 = $("<span><span>");
+  var span2 = $("<span><span>");
   if (data.msgType == "message") {
-    str = data.msgUser + "\t\t\t\t" + data.msgTime + "<br>" + data.msgContent;
+    var str = data.msgUser + "\t\t" + data.msgTime;
+	span1.text(str);
+	div.append(span1);
+	div.append("<br>");
   } else {
-    str = "" + data.msgTime + "\t\t\t\t" + data.msgUser + " " + data.msgContent;
+    var str = "" + data.msgTime + "\t\t" + data.msgUser;
+	span1.text(str);
+	div.append(span1);
+	div.append(" ");
     if (data.msgType == "info") {
       div.css("color", "blue");
     } else {
       div.css("color", "red");
     }
   }
-  div.html(str);
+  span2.text(data.msgContent);
+  
+  div.append(span2);
+  div.append("<hr>");
   $("#recv").append(div);
-  $("#recv").append($("<hr>"));
   messageHints(data.msgContent);
 }
 
