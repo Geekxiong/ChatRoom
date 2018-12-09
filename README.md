@@ -101,5 +101,3 @@ Date.prototype.format = function(fmt)；
 ### web
 
 	前端网页部分
-
-tt
